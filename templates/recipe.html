@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ recipe.name }}</title>
+    <!-- Add the Bootstrap CSS stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    
+    <!-- Add custom styles for the page -->
+    <style>
+      body {
+        padding: 50px;
+        background-color: #1e1e24;
+        font-family;
+      }
+      h1 {
+        text-align: center;
+        color: #92140c;
+        text-decoration: underline;
+      }
+      h2 {
+        border-bottom: 1px solid #fff8f0;
+        margin-top: 40px;
+        margin-bottom: 75px;
+        text-align: center;
+        color: #92140c;
+        /* text-decoration: underline; */
+      }
+      p {
+        line-height: 1.5;
+        text-align: center;
+        color: #fff8f0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <h1 class="text-center">{{ recipe.name }}</h1>
+          <p class="text-center">{{ recipe.description }}</p>
+          
+          {% if recipe.author %}
+          <h2 class="text-center">Author</h2>
+          <p class="text-center">{{ recipe.author }}</p>  
+          {% endif %}
+          
+          {% if recipe.ingredients %}
+          <h2 class="text-center">Ingredients</h2>
+          <p class="text-center">{{ recipe.ingredients| replace(',', '<br>')| safe }}</p>  
+          {% endif %}
+          
+          <h2 class="text-center">Method</h2>
+          <p class="text-center">{{ recipe.method| replace('.', '.<br>')| safe }}</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Add the Bootstrap JS script -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

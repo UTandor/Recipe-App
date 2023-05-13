@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Recipe App</title>
+    <!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+      /* Custom CSS styles for recipe cards */
+      .card {
+    height: 200px;
+    margin-bottom: 30px;
+  }
+
+  .row {
+    margin-bottom: 30px;
+  }
+
+  .btn-primary {
+    display: block;
+    margin: auto;
+    width: 200px;
+    font-size: 16px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .card-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 16px;
+  }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-center my-5">
+            <h1 class="text-center text-md-center text-dark p-3 rounded-pill shadow">Recipes App</h1>
+        </div>
+      {% for recipe in recipes %}
+        {% if loop.index0 % 3 == 0 %}
+          <div class="row">
+        {% endif %}
+        <div class="col mb-4">
+          <div class="card shadow-sm">
+            <div class="card-body d-flex flex-column align-items-center">
+              <h5 class="card-title">{{ recipe.name }}</h5>
+              <p class="card-text">{{ recipe.description|slice(50)|safe }}</p>
+              <div class="mt-auto">
+                <div class="btn-group">
+                  <a href="{{ url_for('recipe', recipe_id=recipe.id) }}" class="btn btn-sm btn-primary mt-auto">View Recipe</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% if loop.index0 % 3 == 2 or loop.last %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <!-- Link to Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
